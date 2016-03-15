@@ -56,7 +56,7 @@ public boolean isWon()
     }
     for(int j = 0; j < bombs.size(); j++) {
         if(bombs.get(j).isClicked() == true) {
-            displayLosingMessage();
+            //return false;
         }
     }
     }
@@ -126,24 +126,26 @@ public class MSButton
                 marked = !marked;
             }
             else if(bombs.contains(this)) {
+                System.out.println("Lost!");
                  displayLosingMessage();
             }
             else if(countBombs(r,c)>0) {
                 setLabel("" + countBombs(r,c));
             }
             else {
-               //  if(isValid(r+1,c)==false && buttons[r+1][c].isClicked()==false) {
+               //  if(isValid(r+1,c) && buttons[r+1][c].isClicked()==false) {
                  //                   buttons[r+1][c].mousePressed();
-                for(int i=-1;i<2;i++) {
+               for(int i=-1;i<2;i++) {
                     for(int j=-1;j<2;j++) {
-                        if(isValid(r+i,c+j)==false) {
-                            if(buttons[r+i][c+j].isClicked()==false) {
+                        if(isValid(r+i,c+j) && buttons[r+i][c+j].isClicked()==false) {
+
                                     buttons[r+i][c+j].mousePressed();
                             }
                         }
                     }
-                }
-            } // }   
+                
+            }
+            //}   }
     }
 
     public void draw () 
